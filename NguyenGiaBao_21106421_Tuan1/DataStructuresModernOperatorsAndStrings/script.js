@@ -128,3 +128,28 @@ const gameEvents = new Map([
     const half = minute <= 45 ? '[FIRST HALF]' : '[SECOND HALF]';
     console.log(`${half} ${minute}: ${event}`);
   }
+
+  //Coding Challenge #4
+  // Thêm textarea và button vào DOM
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+// Đặt ID cho textarea và button
+document.querySelector('textarea').id = 'input';
+const button = document.querySelector('button');
+button.id = 'convert';
+button.textContent = 'Convert';
+
+// Thêm sự kiện lắng nghe cho button
+document.getElementById('convert').addEventListener('click', function() {
+  const text = document.getElementById('input').value;
+  const variableNames = text.split('\n');
+  
+  variableNames.forEach((name, index) => {
+    const words = name.trim().toLowerCase().split('_');
+    const camelCaseName = words.map((word, i) => i === 0 ? word : word[0].toUpperCase() + word.slice(1)).join('');
+    
+    const checkmarks = '✅'.repeat(index + 1);
+    console.log(`${camelCaseName} ${checkmarks}`);
+  });
+});
