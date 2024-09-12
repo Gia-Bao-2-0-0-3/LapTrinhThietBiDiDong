@@ -7,6 +7,7 @@ const YourApp = () => {
     
  const handleLoginPress = () => {
     setDoiFooterText('Login successful');
+    
   };
   return (
     <LinearGradient
