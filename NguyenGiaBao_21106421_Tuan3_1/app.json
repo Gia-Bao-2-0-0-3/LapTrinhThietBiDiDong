@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "nguyengiabao_21106421_tuan3",
-    "slug": "snack-aeb99664-91d6-4ddb-8551-066b6d3a9899",
+    "name": "NguyenGiaBao_21106421_Tuan3",
+    "slug": "NguyenGiaBao_21106421_Tuan3",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "description": "Example usage"
+    }
   }
 }
