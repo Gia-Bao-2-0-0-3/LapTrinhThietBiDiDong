@@ -12,7 +12,7 @@ const YourApp = () => {
         style={{
         flex: 5,
         justifyContent: 'center',
-        alignItems: 'center',open
+        alignItems: 'center',
         backgroundColor:"skyblue",
         }}>
         
