@@ -16,6 +16,7 @@ const YourApp = () => {
       <View style={styles.container}>
       <View>
         <Text style={styles.title}>LOGIN</Text>
+        
       </View>
       
       <View style={styles.inputContainer}>
