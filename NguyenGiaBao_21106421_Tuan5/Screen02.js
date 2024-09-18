@@ -1,12 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native';
-
+import react,{useState} from 'react';
 
 function Screen02() {
+  const [changePic, setChangePic] = useState(require('./assets/vs_silver.png'))
+    
+ const handleLoginPressRed = () => {
+    setChangePic(require('./assets/vs_red.png'))
+  };
+  const handleLoginPressBlue = () => {
+    setChangePic(require('./assets/vs_blue.png'))
+  };
+  const handleLoginPressBlack = () => {
+    setChangePic(require('./assets/vs_black.png'))
+  };
+  const handleLoginPressSilver = () => {
+    setChangePic(require('./assets/vs_silver.png'))
+  };
   return (
     <View style={styles.container}>
       <View style={styles.product}>
-        <Image style={styles.imgPhone} source={require('./assets/vs_red.png')} />
+        <Image style={styles.imgPhone} source={changePic} />
         <View>
             <Text>Điện Thoại Vsmart Joy 3 Hàng chính hãng</Text>
             <View
@@ -37,10 +51,10 @@ function Screen02() {
         ><Text>Chọn một màu bên dưới:</Text></View>
         
         <View style={styles.colorss}>
-            <TouchableOpacity style={styles.color1}></TouchableOpacity>
-            <TouchableOpacity style={styles.color2}></TouchableOpacity>
-            <TouchableOpacity style={styles.color3}></TouchableOpacity>
-            <TouchableOpacity style={styles.color4}></TouchableOpacity>
+            <TouchableOpacity style={styles.color1} onPress={handleLoginPressSilver}></TouchableOpacity>
+            <TouchableOpacity style={styles.color2}  onPress={handleLoginPressRed}></TouchableOpacity>
+            <TouchableOpacity style={styles.color3}  onPress={handleLoginPressBlack}></TouchableOpacity>
+            <TouchableOpacity style={styles.color4}  onPress={handleLoginPressBlue}></TouchableOpacity>
         </View>
         <TouchableOpacity style ={styles.btnXong}>
             <Text style = {{color:'white',fontWeight:'bold',fontSize:20}}>XONG</Text>
@@ -80,6 +94,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#234896',
     },
     colorss:{
+        marginTop: 10,
         flexDirection: 'column',
         gap: 5,
     },
