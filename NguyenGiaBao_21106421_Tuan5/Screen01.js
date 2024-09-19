@@ -1,8 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Screen02 from './Screen02.js';
 
 const Stack = createStackNavigator();
 
@@ -68,16 +65,7 @@ function Screen01({navigation}) {
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Screen01">
-        <Stack.Screen name="Screen01" component={Screen01} />
-        <Stack.Screen name="Screen02" component={Screen02} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -134,3 +122,4 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
 });
+export default Screen01;

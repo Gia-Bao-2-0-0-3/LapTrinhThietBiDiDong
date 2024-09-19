@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native';
 import react,{useState} from 'react';
 
 function Screen02() {
-  const [changePic, setChangePic] = useState(require('./assets/vs_silver.png'))
-    
+ const [changePic, setChangePic] = useState(require('./assets/vs_silver.png'))
+ const [changeTextColor, setChangeTextColor] = useState('bạc')
  const handleLoginPressRed = () => {
     setChangePic(require('./assets/vs_red.png'))
+    setChangeTextColor('đỏ')
   };
   const handleLoginPressBlue = () => {
     setChangePic(require('./assets/vs_blue.png'))
+    setChangeTextColor('xanh dương')
   };
   const handleLoginPressBlack = () => {
     setChangePic(require('./assets/vs_black.png'))
+    setChangeTextColor('đen')
   };
   const handleLoginPressSilver = () => {
     setChangePic(require('./assets/vs_silver.png'))
+    setChangeTextColor('bạc')
   };
   return (
     <View style={styles.container}>
@@ -29,7 +32,7 @@ function Screen02() {
                 }}>
                 <Text>Màu: </Text>
                 <Text style={{fontWeight: 'bold'}}
-                >đỏ </Text>
+                >{changeTextColor} </Text>
             </View>
             <View style={{
                     flexDirection: 'row',
@@ -124,7 +127,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 15,
         borderRadius: 10,
-        borderWidth: 1,
         backgroundColor: '#1952E294',
         marginTop: 30,
     },
