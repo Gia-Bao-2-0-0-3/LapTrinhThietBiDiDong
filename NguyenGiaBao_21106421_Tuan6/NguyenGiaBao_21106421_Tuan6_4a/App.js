@@ -128,6 +128,11 @@ export default function App() {
         )}
         keyExtractor={item => item.id}
       />
+      <View style={styles.footer}>
+        <Image source={require('./assets/3gach.png')} style={{ width: 20, height: 20 }} />
+        <Image source={require('./assets/home.png')} style={{ width: 20, height: 20 }} />
+        <Image source={require('./assets/comback.png')} style={{ width: 20, height: 20 }} />
+      </View>
     </SafeAreaView>
   );
 }
@@ -175,6 +180,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
+    flexDirection: 'row',
+    backgroundColor: '#1BA9FF',
+    padding: 10,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  footer: {
     flexDirection: 'row',
     backgroundColor: '#1BA9FF',
     padding: 10,
