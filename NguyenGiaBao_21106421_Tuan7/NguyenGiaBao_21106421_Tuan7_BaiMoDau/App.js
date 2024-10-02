@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, SafeAreaView } from 'react-native';
 
+
 export default function App() {
   const [Users, setUsers] = useState([]);
 
@@ -12,27 +13,22 @@ export default function App() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: 'morpheus',
-        job: 'leader',
+        name: 'Gia Bao',
+        job: 'Developer',
       }),
     })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        setUsers((prevUsers) => [...prevUsers, json]);
+      .then(response => response.json())
+      .then(() => {
+        getUser(); 
       })
-      .catch((error) => console.error('Error:', error));
+      .catch(error => console.error('Error:', error));
   };
 
-  const getUser = async () => {
-    try {
-      const response = await fetch('https://66fc909bc3a184a84d175427.mockapi.io/user');
-      const json = await response.json();
-      console.log(json);
-      setUsers(json);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const getUser = () => {
+    fetch('https://66fc909bc3a184a84d175427.mockapi.io/user')
+      .then(response => response.json())
+      .then(data => setUsers(data))
+      .catch(error => console.error('Error:', error));
   };
 
   const deleteUser = (id) => {
@@ -40,11 +36,11 @@ export default function App() {
       method: 'DELETE',
     })
       .then(() => {
-        console.log('Deleted');
-        setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+        getUser();
       })
-      .catch((error) => console.error('Error:', error));
+      .catch(error => console.error('Error:', error));
   };
+
   const editUser = (id) => {
     fetch(`https://66fc909bc3a184a84d175427.mockapi.io/user/${id}`, {
       method: 'PUT',
@@ -52,18 +48,17 @@ export default function App() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: 'gBao',
-        job: 'IT',
+        name: 'Nguyen Gia Bao',
+        job: 'Leader',
       }),
     })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        setUsers((prevUsers) => prevUsers.map((user) => (user.id === id ? json : user)));
+      .then(response => response.json())
+      .then(() => {
+        getUser();
       })
-      .catch((error) => console.error('Error:', error));
-      getUser();
+      .catch(error => console.error('Error:', error));
   };
+
   useEffect(() => {
     getUser();
   }, []);
@@ -80,8 +75,8 @@ export default function App() {
         <TouchableOpacity style={styles.button} onPress={createUser}>
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText} onPress={() => editUser(2)}>Edit</Text>
+        <TouchableOpacity style={styles.button} onPress={() => editUser(1)}>
+          <Text style={styles.buttonText}>Edit</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => deleteUser(1)}>
           <Text style={styles.buttonText}>Delete</Text>
@@ -128,5 +123,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+  },
+  item: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
 });
