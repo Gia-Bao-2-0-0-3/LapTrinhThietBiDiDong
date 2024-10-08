@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, SafeAreaVie
 import React, { useState } from 'react';
 
 export default function Screen03({ route, navigation }) {
-  const { isAdd, name, job, id, refreshData } = route.params;
+  const { isAdd, name, job, id } = route.params;
   const [jobInput, setJobInput] = useState(job || '');
 
   const handleAddJob = () => {
@@ -17,7 +17,6 @@ export default function Screen03({ route, navigation }) {
     })
       .then(response => response.json())
       .then(() => {
-        refreshData();
         navigation.goBack();
       })
       .catch(error => console.error('Error:', error));
@@ -35,7 +34,6 @@ export default function Screen03({ route, navigation }) {
     })
       .then(response => response.json())
       .then(() => {
-        refreshData();
         navigation.goBack();
       })
       .catch(error => console.error('Error:', error));

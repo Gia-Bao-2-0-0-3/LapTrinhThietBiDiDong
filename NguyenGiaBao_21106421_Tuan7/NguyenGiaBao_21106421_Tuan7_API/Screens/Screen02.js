@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, FlatList, SafeAreaView } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
-const Item = ({ id, job, navigation, name, refreshData }) => (
+const Item = ({ id, job, navigation, name}) => (
   <View style={styles.item}>
     <View style={styles.check}>
       <Image source={require('../assets/check.png')} />
       <Text>{job}</Text>
     </View>
-    <TouchableOpacity onPress={() => navigation.navigate('Screen03', { isAdd: false, name: name, job: job, id: id, refreshData })}>
+    <TouchableOpacity onPress={() => navigation.navigate('Screen03', { isAdd: false, name: name, job: job, id: id})}>
       <Image source={require('../assets/edit.png')} />
     </TouchableOpacity>
   </View>
@@ -24,21 +25,16 @@ export default function Screen02({ route, navigation }) {
       .then(response => response.json())
       .then(data => {
         setJOB(data);
-        setFilteredData(data); // Cập nhật filteredData khi nhận dữ liệu
+        setFilteredData(data); 
       })
       .catch(error => console.error('Error:', error));
   };
 
-  useEffect(() => {
-    getJob();
-  }, []);
-
-  useEffect(() => {
-    if (newJob) {
-      setJOB(prevJobs => [...prevJobs, newJob]);
-      setFilteredData(prevJobs => [...prevJobs, newJob]);
-    }
-  }, [newJob]);
+  useFocusEffect(
+    React.useCallback(() => {
+      getJob();
+    }, [])
+  );
 
   const handleSearch = (text) => {
     setSearch(text);
@@ -54,9 +50,6 @@ export default function Screen02({ route, navigation }) {
     }
   };
 
-  const refreshData = () => {
-    getJob();
-  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -86,7 +79,7 @@ export default function Screen02({ route, navigation }) {
       <View style={styles.containerBody}>
         <FlatList
           data={filteredData}
-          renderItem={({ item }) => <Item id={item.id} job={item.job} navigation={navigation} name={name} refreshData={refreshData} />}
+          renderItem={({ item }) => <Item id={item.id} job={item.job} navigation={navigation} name={name} />}
           keyExtractor={item => item.id}
         />
       </View>
@@ -94,7 +87,7 @@ export default function Screen02({ route, navigation }) {
       <View style={styles.containerAdd}>
         <TouchableOpacity
           style={styles.btnAdd}
-          onPress={() => navigation.navigate('Screen03', { isAdd: true, name: name, refreshData })}
+          onPress={() => navigation.navigate('Screen03', { isAdd: true, name: name})}
         >
           <Text style={{ color: 'white', fontSize: 40 }}>+</Text>
         </TouchableOpacity>
