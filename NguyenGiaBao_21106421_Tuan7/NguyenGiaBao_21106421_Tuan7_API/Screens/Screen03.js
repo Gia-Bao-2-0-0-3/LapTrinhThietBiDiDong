@@ -16,7 +16,7 @@ export default function Screen03({ route, navigation }) {
       }),
     })
       .then(response => response.json())
-      .then(newJob => {
+      .then(() => {
         refreshData();
         navigation.goBack();
       })
