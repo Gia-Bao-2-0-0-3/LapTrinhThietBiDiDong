@@ -2,6 +2,7 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
 import React, { useState,useEffect } from 'react';
 
+  
 const Item = ({ item,navigation}) => (
   <View style={styles.item}>
     <Image source={`../assets/${item.image}`} style={styles.image} />
