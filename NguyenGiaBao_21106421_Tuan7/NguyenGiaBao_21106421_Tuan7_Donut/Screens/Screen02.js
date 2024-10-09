@@ -1,10 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
-import React, { useState,useEffect } from 'react';
+
+import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
 
 
 export default function Screen02({ route }) {
-    const { name, id, image, price } = route.params;
+    const item = route.params;
      
     const [soLuong, setSoLuong] = useState(1);
 
@@ -17,16 +17,16 @@ export default function Screen02({ route }) {
             setSoLuong(soLuong - 1);
         }
     }
-  
+    
   return (
     <SafeAreaView style={styles.container}>
         <View style={styles.containerTop}>
-            <Image source={`../assets/${image}`} style={styles.image} />
+            <Image source={`../assets/${item.image}`} style={styles.image} />
             <View style={styles.textContainer}>
                 <Text style={{
                     fontSize: 16,
                     fontWeight: 'bold',
-                }}>{name}</Text>
+                }}>{item.name}</Text>
                 
                 <View style={styles.price}>
                         <Text style={{
@@ -36,7 +36,7 @@ export default function Screen02({ route }) {
                     <Text style={{
                         fontSize: 16,
                         fontWeight: 'bold',
-                    }}>${price}.00</Text>
+                    }}>${item.price}.00</Text>
                 </View>
              </View>           
         </View>

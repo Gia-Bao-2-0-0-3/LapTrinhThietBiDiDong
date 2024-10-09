@@ -1,15 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
+
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
 import React, { useState,useEffect } from 'react';
 
-const Item = ({ name, image, price,navigation}) => (
+const Item = ({ item,navigation}) => (
   <View style={styles.item}>
-    <Image source={`../assets/${image}`} style={styles.image} />
+    <Image source={`../assets/${item.image}`} style={styles.image} />
     <View style={styles.textContainer}>
       <Text style={{
         fontSize: 16,
         fontWeight: 'bold',
-      }}>{name}</Text>
+      }}>{item.name}</Text>
       <Text style={{
         fontSize: 16,
       }}>Spicy tasty donut family</Text>
@@ -17,8 +17,8 @@ const Item = ({ name, image, price,navigation}) => (
         <Text style={{
           fontSize: 16,
           fontWeight: 'bold',
-        }}>${price}.00</Text>
-        <TouchableOpacity style={styles.btnadd} onPress={() => navigation.navigate('Screen02', {name: name, price: price, image: image})}>
+        }}>${item.price}.00</Text>
+        <TouchableOpacity style={styles.btnadd} onPress={() => navigation.navigate('Screen02', item)}>
           <Text style={{
             fontSize: 16,
             fontWeight: 'bold',
@@ -49,6 +49,11 @@ export default function Screen01({ navigation }) {
     const filtered = donutData.filter(donut => donut.name.includes(name));
     setFilteredData(filtered);
   };
+
+  const searchDonuts = (name) => {
+    const filtered = donutData.filter(donut => donut.name.toLowerCase().includes(name.toLowerCase()));
+    setFilteredData(filtered);
+  };
   
   useEffect(() => {
     getDonut();
@@ -63,7 +68,7 @@ export default function Screen01({ navigation }) {
           >Welcome, Jala!</Text>
           <Text  style={{fontSize: 20, fontWeight: 'bold'}}
           >Choice you Best food</Text>
-          <TextInput placeholder="Search food" style={styles.inputSearch} />
+          <TextInput placeholder="Search food" style={styles.inputSearch} onChangeText={(text) => searchDonuts(text)} />
         </View>
         <View style={styles.filterDonut}>
           <TouchableOpacity style ={styles.btnfilterDonut} onPress={() => filterDonutsByName('Donut')}>
@@ -84,7 +89,7 @@ export default function Screen01({ navigation }) {
       <FlatList 
         data={filteredData}
         renderItem={({ item }) => (
-          <Item name={item.name} image={item.image} price={item.price} navigation={navigation} />
+          <Item item={item} navigation={navigation} />
         )}
         keyExtractor={item => item.id}  
       />
