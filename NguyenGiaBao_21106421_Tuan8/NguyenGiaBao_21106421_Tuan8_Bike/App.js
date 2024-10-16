@@ -13,7 +13,7 @@ export default function App() {
                 <Stack.Screen name='Screen01' component={Screen01}/>
                 <Stack.Screen name='Screen02' component={Screen02}/>
                 <Stack.Screen name='Screen03' component={Screen03}/>
-            </Stack.Navigator>s
+            </Stack.Navigator>
         </NavigationContainer>
     );
 }

@@ -9,23 +9,26 @@ export default function Screen01({navigation}) {
         <View style={styles.container}>
             <Text style={{
                 fontSize: 16,
+                textAlign: 'center',
+                fontWeight: 'bold'
             }}>
-                A premium online store for sporter and their stylish choice
+                A premium online store for sporter and {'\n'}their stylish choice
             </Text>
             <Image style={{
-                height:300,
-                width:300,
+                height:400,
+                width:400,
                 borderRadius:20,
                 backgroundColor:'#E941411A'
 
 
-            }} source={require('../assets/Pinarello.png')} />
+            }} source={require('../assets/Pinarello.png')} resizeMode="contain" />
             <Text style={{
                 fontSize: 20,
-                fontWeight: 'bold'
+                fontWeight: 'bold',
+                textAlign: 'center',
             }}
             >
-                POWER BIKE SHOP
+                POWER BIKE{'\n'} SHOP
             </Text>
             <TouchableOpacity style={{
                 backgroundColor: 'red',
@@ -36,8 +39,10 @@ export default function Screen01({navigation}) {
             >
                 <Text style={{
                     color: 'white',
-                    padding:10
-            }}>
+                    padding:10,
+                    fontWeight:'bold',
+                    fontSize:20
+                }}>
                 Get Stated
             </Text>
         </TouchableOpacity>
